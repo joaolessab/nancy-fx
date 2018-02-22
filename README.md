@@ -21,3 +21,25 @@
 5 - Install the **Nancy.BootStrappers.StructureMap** too;
 
 6 - Start coding;
+
+## Code Sample
+The code below reproduces a simple GET using Nancy Framework:
+
+```csharp
+using Nancy;
+
+namespace NancyTests
+{
+    public class CarModule: NancyModule
+    {
+        public CarModule()
+        {
+            //Adding a simple route
+            Get["/status"] = _ => "Hello World!";
+        }
+    }
+}
+```
+
+To return the string Hello World, open the **localhost:port/your-route** (http://localhost:64281/status):
+# Hello World!
