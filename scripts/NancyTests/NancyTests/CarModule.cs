@@ -1,5 +1,6 @@
 ﻿using Nancy;
 using Nancy.ModelBinding;
+using System;
 using System.Collections.Generic;
 
 namespace NancyTests
@@ -17,6 +18,9 @@ namespace NancyTests
             Get["/car/{id}"] = parameters =>
             {
                 int id = parameters.id;
+
+                if (id == 32)
+                    throw new CarNotFoundException();
 
                 return Negotiate
                 .WithStatusCode(HttpStatusCode.OK)
@@ -68,5 +72,10 @@ namespace NancyTests
     {
         public string Make { get; set; }
         public string Model { get; set; }
+    }
+
+    public class CarNotFoundException : Exception
+    {
+        
     }
 }
