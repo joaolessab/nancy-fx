@@ -17,3 +17,5 @@
 3 - Click on *Manage Nuget Packages*;
 
 4 - Search for *Nancy* and click to install the package: **Nancy.Hosting.Aspnet** (it will also install **Nancy** automatically because it's a dependency);
+
+5 - Install the **Nancy.BootStrappers.StructureMap** too;
