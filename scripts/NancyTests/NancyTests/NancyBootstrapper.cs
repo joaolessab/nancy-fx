@@ -2,18 +2,19 @@
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 using System.Text;
+using Nancy.Bootstrappers.StructureMap;
+using StructureMap;
 
 namespace NancyTests
 {
-    public class NancyBootstrapper : DefaultNancyBootstrapper
+    public class NancyBootstrapper : StructureMapNancyBootstrapper
     {
-        //Nancy function to treat exceptions
-        protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
+        protected override void ApplicationStartup(IContainer container, IPipelines pipelines)
         {
             pipelines.OnError += (context, exception) =>
             {
                 if (exception is CarNotFoundException)
-                    //Building the responde body
+                    //Building the response body
                     return new Response()
                     {
                         StatusCode = HttpStatusCode.NotFound,
