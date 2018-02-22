@@ -41,5 +41,30 @@ namespace NancyTests
 }
 ```
 
-To return the string Hello World, open the **localhost:port/your-route** (http://localhost:64281/status):
-# Hello World!
+To return the string Hello World, open the **localhost:port/your-route** (http://localhost:64281/status)
+
+## Working with parameters
+```csharp
+using Nancy;
+
+namespace NancyTests
+{
+    public class CarModule: NancyModule
+    {
+        public CarModule()
+        {
+            Get["/car/{id}"] = parameters =>
+            {
+                int id = parameters.id;
+
+                if (id == 32)
+                    throw new CarNotFoundException();
+
+                return Negotiate
+                .WithStatusCode(HttpStatusCode.OK)
+                .WithModel(id);
+            };
+        }
+    }
+}
+```
