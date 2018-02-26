@@ -35,7 +35,7 @@ namespace NancyTests
 
                 var listOfCars = new List<Car>
                 {
-                    new Car
+                    new Car 
                     {
                         Id = 1,
                         Make = carQuery.Make,
@@ -59,6 +59,15 @@ namespace NancyTests
                     .WithStatusCode(HttpStatusCode.OK)
                     .WithModel(listOfCars);
             };
+
+            //Post service
+            Post["geocoder/batch/csv/upload"] =
+				_ =>
+				{
+                    //GETS A FILE
+                    var file = Request.Files.FirstOrDefault();
+                }
+
         }       
     }
 
