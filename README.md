@@ -2,7 +2,7 @@
   <img src="https://github.com/jvlessa/NancyFx--Case-Study/blob/master/images/logo.jpg" width="350">
 </p>
 
-<p align="center">This repository was created to explore the Nancy .Net framework that was created based on the Sinatra Framework for Ruby to build HTTP based services.</b></p>
+<p align="center">This repository was created to explore the Nancy .Net framework that is based on the Sinatra Framework for Ruby to build HTTP based services.</b></p>
 
 ## Guides
 * Read their official [introduction](https://github.com/NancyFx/Nancy/blob/master/README.md);
@@ -41,5 +41,31 @@ namespace NancyTests
 }
 ```
 
-To return the string Hello World, open the **localhost:port/your-route** (http://localhost:64281/status):
-# Hello World!
+To return the string Hello World, open the **localhost:port/your-route** (http://localhost:64281/status)
+
+## Working with parameters
+```csharp
+using Nancy;
+
+namespace NancyTests
+{
+    public class CarModule: NancyModule
+    {
+        public CarModule()
+        {
+            Get["/car/{id}"] = parameters =>
+            {
+                int id = parameters.id;
+
+                if (id == 32)
+                    throw new CarNotFoundException();
+
+                return Negotiate
+                .WithStatusCode(HttpStatusCode.OK)
+                .WithModel(id);
+            };
+        }
+    }
+}
+```
+To return the data, open the **localhost:port/car/id**
